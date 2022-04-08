@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $conn = mysqli_connect("localhost", "root", "", "pengirimanbarang");
 
 function query($query)
@@ -54,4 +54,10 @@ function register($data)
 	mysqli_query($conn, "INSERT INTO admin VALUES ('$kd_admin', '$nama_admin', '$telp_admin', '$alamat_admin', '$kd_wilayah', '$password')");
 
 	return mysqli_affected_rows($conn);
+}
+
+function selected_user($user)
+{
+	global $conn;
+	return mysqli_fetch_assoc(mysqli_query($conn, "SELECT nama_admin FROM admin WHERE kd_admin = '$user'"))['nama_admin'];
 }

@@ -1,6 +1,4 @@
 <?php
-
-session_start();
 require 'functions.php';
 
 if (isset($_COOKIE['un']) && isset($_COOKIE['key'])) {
@@ -37,9 +35,11 @@ if (isset($_POST['login'])) {
 		if (password_verify($password, $row["password"])) {
 			// set session
 			$_SESSION["login"] = true;
-
+			$_SESSION['user'] = $_POST['kd_admin'];
+			header('Location: index.php');
 			// cek remember me
 			if (isset($_POST['ingat'])) {
+
 				// buat cookie
 				setcookie('un', $row['id']);
 				setcookie('key', hash('sha256', $row['kd_admin'], time() + 60));

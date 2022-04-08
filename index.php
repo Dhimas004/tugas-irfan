@@ -1,14 +1,12 @@
 <?php
-
-session_start();
 include './functions.php';
 if (!isset($_SESSION["login"])) {
     header("location: login.php");
     exit;
 }
-
 $kd_admin = query("SELECT * FROM admin");
-var_dump($kd_admin);
+
+
 ?>
 
 
@@ -26,6 +24,7 @@ var_dump($kd_admin);
 </head>
 
 <body>
+    User yang sedang login : <?= selected_user($_SESSION['user']); ?>
     <?php
     ?>
     <a href="logout.php">logout</a>

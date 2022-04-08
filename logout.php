@@ -1,6 +1,7 @@
 <?php 
 session_start();
 $_SESSION = [];
+unset($_SESSION['user']);
 session_unset();
 session_destroy();
 
@@ -16,5 +17,3 @@ setcookie('key', '', time() - 3600);
 
 header("location: login.php");
 exit;
-
- ?>
